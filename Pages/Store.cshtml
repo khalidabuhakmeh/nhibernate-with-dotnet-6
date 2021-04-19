@@ -1,0 +1,40 @@
+@page "/store/{id:required}"
+@using Demo.Models.Entities
+@model Demo.Pages.Store
+@{
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Model.Name</h1>
+</div>
+
+<h2>Products</h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">@Html.DisplayNameForInnerType((Product s) => s.Id)</th>
+        <th scope="col">@Html.DisplayNameForInnerType((Product s) => s.Name)</th>
+        <th scope="col">@Html.DisplayNameForInnerType((Product s) => s.Price)</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var product in Model.Products)
+    {
+        <tr>
+            <th scope="row">@product.Id</th>
+            <td>@product.Name</td>
+            <td>@product.Price.ToString("C")</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Staff</h2>
+<ul>
+    @foreach (var employee in Model.Staff)
+    {
+        <li>
+            @employee.LastName, @employee.FirstName (#@employee.Id)
+        </li>
+    }
+</ul>

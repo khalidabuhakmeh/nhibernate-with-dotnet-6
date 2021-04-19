@@ -1,0 +1,34 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Stores In Your Area</h1>
+    <h2>Using NHibernate and SQLite</h2>
+</div>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">@Html.DisplayNameForInnerType((StoreModel s) => s.Id)</th>
+        <th scope="col">@Html.DisplayNameForInnerType((StoreModel s) => s.Name)</th>
+        <th scope="col">@Html.DisplayNameForInnerType((StoreModel s) => s.NumberOfProducts)</th>
+        <th scope="col">@Html.DisplayNameForInnerType((StoreModel s) => s.NumberOfStaff)</th>
+        <th scope="col"><span class="text-hide">Actions</span></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var s in Model.Stores)
+    {
+        <tr>
+            <th scope="row">@s.Id</th>
+            <td>@s.Name</td>
+            <td>@s.NumberOfProducts</td>
+            <td>@s.NumberOfStaff</td>
+            <td><a href="@Url.PageLink("Store", values: new { s.Id })" asp- class="btn btn-primary">More...</a></td>
+        </tr>
+    }
+    </tbody>
+</table>
